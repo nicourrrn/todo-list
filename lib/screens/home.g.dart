@@ -33,3 +33,23 @@ class TodoFormScreen extends HookConsumerWidget {
         _ref,
       );
 }
+
+class TodoDetail extends HookConsumerWidget {
+  const TodoDetail(
+    this.todo, {
+    Key? key,
+  }) : super(key: key);
+
+  final Todo todo;
+
+  @override
+  Widget build(
+    BuildContext _context,
+    WidgetRef _ref,
+  ) =>
+      todoDetail(
+        _context,
+        _ref,
+        todo,
+      );
+}

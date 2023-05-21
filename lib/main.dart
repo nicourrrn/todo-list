@@ -19,6 +19,7 @@ main() async {
 final _router = GoRouter(routes: [
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(path: '/todo_create', builder: (context, state) => const TodoFormScreen()),
+    GoRoute(path: '/todo_detail', builder: (context, state) => TodoDetail(state.extra as Todo))
 ]);
 
 @immutable

@@ -35,6 +35,7 @@ class TodoAdapter extends TypeAdapter<Todo> {
     
     @override
     write(BinaryWriter writer, Todo todo) {
+        writer.writeInt(todo.id);
         writer.writeString(todo.title);
         writer.write(todo.status);
         writer.writeString(todo.desctiprion);
@@ -43,6 +44,7 @@ class TodoAdapter extends TypeAdapter<Todo> {
     @override
     Todo read(BinaryReader reader) {
         return Todo(
+            id: reader.readInt(),
             title: reader.readString(),
             status: reader.read(),
             desctiprion: reader.readString(),
