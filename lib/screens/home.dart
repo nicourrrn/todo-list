@@ -3,7 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:functional_widget_annotation/functional_widget_annotation.dart';
 import 'package:todo_final/components/nav_bar.dart';
-
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import '../models/todo_list.dart';
 import '../models/todo.dart';
 import '../components/todo_list_view.dart';
@@ -41,7 +42,20 @@ Widget todoDetail(BuildContext context, WidgetRef ref, Todo todo) {
         appBar: AppBar(title: Text(todo.title)),
         body: Padding(padding: const EdgeInsets.all(16),
             child: Column(children: [
-                Text(todo.desctiprion, style: Theme.of(context).textTheme.bodyLarge) 
+                Hero(tag: "anim-${todo.status.name}", child: Text(todo.desctiprion, style: Theme.of(context).textTheme.bodyLarge))
             ])),
     );
 }
+
+
+
+
+@hcwidget 
+Widget loginScreen() {
+    final result = await FlutterWebAuth2.authenticate(url: "https://my-custom-app.com/connect", callbackUrlScheme: "my-custom-app");
+
+// Extract token from resulting url
+    final token = Uri.parse(result).queryParameters['token'];
+}
+
+

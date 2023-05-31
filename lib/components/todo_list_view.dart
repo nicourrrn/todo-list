@@ -24,7 +24,7 @@ Widget todoTile(BuildContext context, WidgetRef ref, Todo todo) {
 
     return ListTile(
         title: Text("#${todo.id}) ${todo.title}"),
-        subtitle: Text(todo.status.name),
+        subtitle: Hero(tag: "anim-${todo.status.name}", child: Text(todo.status.name)),
         trailing: IconButton(onPressed: () => changeStatus(todo, 1),
                 icon: const Icon(Icons.chevron_right)),
         onLongPress: () => changeStatus(todo, -1),
@@ -62,11 +62,13 @@ Widget todoForm(BuildContext context, WidgetRef ref) {
         context.pop();
     }
 
-    return Column(children: [
+    return Wrap(runSpacing: 20, alignment: WrapAlignment.center, children: [
         TextField(controller: titleCtrl, autofocus: true,
-            onSubmitted: (_) => descFocus.requestFocus(),),
+            onSubmitted: (_) => descFocus.requestFocus(),
+            decoration: const InputDecoration(labelText: "Title"),),
         TextField(controller: descCtrl, focusNode: descFocus,
-         onSubmitted: (_) => saveFocus.requestFocus()),
+         onSubmitted: (_) => saveFocus.requestFocus(),
+         decoration: const InputDecoration(labelText: "Desctiprion")),
         TextButton(onPressed: saveTodo, child: const Text("Save"),
             focusNode: saveFocus,),
     ]);

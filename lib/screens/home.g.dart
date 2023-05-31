@@ -53,3 +53,14 @@ class TodoDetail extends HookConsumerWidget {
         todo,
       );
 }
+
+class LoginScreen extends HookConsumerWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(
+    BuildContext _context,
+    WidgetRef _ref,
+  ) =>
+      loginScreen();
+}
